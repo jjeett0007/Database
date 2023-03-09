@@ -44,6 +44,8 @@ function SignUpPage() {
   const handleSubmit = async (event: React.ChangeEvent<HTMLInputElement>) => {
     event.preventDefault();
 
+    // const { name, surname, email, mobile, password, profilePic } = formData;
+
     const formData = new FormData();
 
     if (picture) {
