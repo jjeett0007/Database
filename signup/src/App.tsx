@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import axios from "axios";
+import "./App.css"
 // import Hello from "./Hello"
 
 function SignUpPage() {
@@ -7,7 +9,9 @@ function SignUpPage() {
   const [email, setEmail] = useState("");
   const [mobileNumber, setMobileNumber] = useState("");
   const [password, setPassword] = useState("");
-  const [picture, setPicture] = useState(null);
+  const [picture, setPicture] = useState<Blob | null>(null);
+  const [errorMessage, setErrorMessage] = useState("");
+
 
   const handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setName(event.target.value);
@@ -29,13 +33,23 @@ function SignUpPage() {
     setPassword(event.target.value);
   };
 
-  const handlePictureChange = (event) => {
-    setPicture(event.target.files[0]);
+  const handlePictureChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const files = event.target.files;
+    if (files && files.length > 0) {
+      const file = files[0];
+      setPicture(file);
+    }
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event: React.ChangeEvent<HTMLInputElement>) => {
     event.preventDefault();
     const formData = new FormData();
+    if (picture) {
+      // Do something with the image
+      console.log('Picture:', picture);
+    } else {
+      console.log('No picture selected');
+    }
     formData.append("name", name);
     formData.append("surname", surname);
     formData.append("email", email);
@@ -43,6 +57,20 @@ function SignUpPage() {
     formData.append("password", password);
     formData.append("picture", picture);
     // TODO: send the form data to the backend server
+
+    try {
+      const response = await axios.post("/signup", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      console.log(response.data);
+      // do something with response data
+    } catch (error) {
+      setErrorMessage("Error signing up. Please try again.");
+      console.error(error);
+    }
+
   };
 
   return (
@@ -74,6 +102,7 @@ function SignUpPage() {
         </label>
         <button type="submit">Sign Up</button>
       </form>
+      {errorMessage && <p>{errorMessage}</p>}
 
       {/* <Hello /> */}
     </>
