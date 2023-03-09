@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+// import Hello from "./Hello"
 
 function SignUpPage() {
   const [name, setName] = useState("");
@@ -8,23 +9,23 @@ function SignUpPage() {
   const [password, setPassword] = useState("");
   const [picture, setPicture] = useState(null);
 
-  const handleNameChange = (event) => {
+  const handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setName(event.target.value);
   };
 
-  const handleSurnameChange = (event) => {
+  const handleSurnameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSurname(event.target.value);
   };
 
-  const handleEmailChange = (event) => {
+  const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(event.target.value);
   };
 
-  const handleMobileNumberChange = (event) => {
+  const handleMobileNumberChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setMobileNumber(event.target.value);
   };
 
-  const handlePasswordChange = (event) => {
+  const handlePasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(event.target.value);
   };
 
@@ -45,33 +46,37 @@ function SignUpPage() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        Name:
-        <input type="text" value={name} onChange={handleNameChange} />
-      </label>
-      <label>
-        Surname:
-        <input type="text" value={surname} onChange={handleSurnameChange} />
-      </label>
-      <label>
-        Email:
-        <input type="email" value={email} onChange={handleEmailChange} />
-      </label>
-      <label>
-        Mobile Number:
-        <input type="tel" value={mobileNumber} onChange={handleMobileNumberChange} />
-      </label>
-      <label>
-        Password:
-        <input type="password" value={password} onChange={handlePasswordChange} />
-      </label>
-      <label>
-        Picture:
-        <input type="file" accept="image/*" onChange={handlePictureChange} />
-      </label>
-      <button type="submit">Sign Up</button>
-    </form>
+    <>
+      <form onSubmit={handleSubmit}>
+        <label>
+          Name:
+          <input type="text" value={name} onChange={handleNameChange} />
+        </label>
+        <label>
+          Surname:
+          <input type="text" value={surname} onChange={handleSurnameChange} />
+        </label>
+        <label>
+          Email:
+          <input type="email" value={email} onChange={handleEmailChange} />
+        </label>
+        <label>
+          Mobile Number:
+          <input type="tel" value={mobileNumber} onChange={handleMobileNumberChange} />
+        </label>
+        <label>
+          Password:
+          <input type="password" value={password} onChange={handlePasswordChange} />
+        </label>
+        <label>
+          Picture:
+          <input type="file" accept="image/*" onChange={handlePictureChange} />
+        </label>
+        <button type="submit">Sign Up</button>
+      </form>
+
+      {/* <Hello /> */}
+    </>
   );
 }
 
