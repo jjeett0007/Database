@@ -43,7 +43,9 @@ function SignUpPage() {
 
   const handleSubmit = async (event: React.ChangeEvent<HTMLInputElement>) => {
     event.preventDefault();
+
     const formData = new FormData();
+
     if (picture) {
       // Do something with the image
       console.log('Picture:', picture);
