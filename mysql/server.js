@@ -16,7 +16,7 @@ const pool = mysql.createPool({
 const upload = multer({ dest: 'uploads/' });
 
 // Define an API endpoint to create a new user
-app.post('/api/users', upload.single('picture'), (req, res) => {
+app.post('/signup', upload.single('picture'), (req, res) => {
   // Get the user's information from the request body
   const { name, surname, email, mobile, password } = req.body;
 
@@ -39,7 +39,12 @@ app.post('/api/users', upload.single('picture'), (req, res) => {
   });
 });
 
+// fetch response display on web
+app.get('/', (req, res) => {
+    res.send('<h1>Hello World!</h1>');
+  });
+
 // Start the server
-app.listen(3000, () => {
-  console.log('Server started on port 3000');
+app.listen(3002, () => {
+  console.log('Server started on port 3002');
 });
