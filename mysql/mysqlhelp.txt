@@ -1,0 +1,28 @@
+
+sudo service mysql start
+
+sudo systemctl start mysql
+
+sudo service mysql start   # for Debian-based systems
+sudo systemctl start mysql # for systems that use systemd
+
+mysql -u root -p
+
+CREATE DATABASE mydatabase;
+
+CREATE TABLE users (
+  id INT NOT NULL AUTO_INCREMENT,
+  name VARCHAR(50) NOT NULL,
+  surname VARCHAR(50) NOT NULL,
+  email VARCHAR(100) NOT NULL,
+  mobile_number VARCHAR(20) NOT NULL,
+  password VARCHAR(100) NOT NULL,
+  picture LONGBLOB,
+  PRIMARY KEY (id)
+);
+
+
+GRANT ALL PRIVILEGES ON my_database.* TO 'myuser'@'localhost' IDENTIFIED BY 'mypassword';
+
+SHOW GLOBAL VARIABLES LIKE 'PORT';
+

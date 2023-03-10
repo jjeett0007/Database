@@ -106,7 +106,7 @@ function SignUpPage() {
         </label>
         <button type="submit">Sign Up</button>
       </form>
-      {errorMessage && <p>{errorMessage}</p>}
+      {errorMessage && <p id="message">{errorMessage}</p>}
 
       {/* <Hello /> */}
     </>
